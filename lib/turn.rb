@@ -1,6 +1,6 @@
 class Turn
     attr_reader :guess, :card
-    # attr_accessor :answer
+    attr_accessor :number_correct
     def initialize(guess, card)
         @guess = guess
         @card = card
@@ -11,7 +11,12 @@ class Turn
     end
 
     def correct?
-        @guess == card.answer
+        if @guess == card.answer
+            # round.number_correct += 1
+            true
+        elsif @guess != card.answer
+            false
+        end
     end
 
     def card
