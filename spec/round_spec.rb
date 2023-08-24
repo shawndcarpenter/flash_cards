@@ -192,7 +192,7 @@ RSpec.describe Round do
     new_turn = round.take_turn("Juneau")
     expect(round.current_card).to be(card_2)
     round.take_turn("Venus")
-    #equire 'pry';  binding.pry
+    #require 'pry';  binding.pry
     expect(round.percent_correct).to eq(50.0)
   end
 
