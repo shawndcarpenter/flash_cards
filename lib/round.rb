@@ -7,15 +7,15 @@ class Round
     @correct = []
   end
 
+
   def current_card
     if @turns.count == 0
       deck.cards[0]
     elsif @turns.count > 0
-      # rotated_deck = deck.cards.rotate(1)
-      # rotated_deck[0]
-      @deck.cards.shift
+      deck.cards[0]
     end
   end
+
 
   def take_turn(guess)
     #when called, turn is taken in to the turns array.
@@ -23,8 +23,10 @@ class Round
     turn = Turn.new(guess, current_card)
       @turns << turn
       @deck.cards.shift
+      current_card
     turn
   end
+
 
   def number_correct
     if @guess == @answer
@@ -42,52 +44,19 @@ class Round
     end
     #require 'pry';  binding.pry
     category_correct
-    # @correct.count(requested_category)
-    # # set up local variable integer zero
-    # counter += 1
-    # # iterate over @correct
-    
-    # @correct.each do |cor|
-    #   @cor.count(requested_category)
-    #   if turn.correct? && @category == requested_category
-    #     category_correct += 1
-    #   end
-    #   category_correct
-    # end
-      
-    # .each
-    # if category matches requested category, increment by 1
-    
-    # once done iterating, return integer
   end
+
+
   def percent_correct
     (number_correct.to_f / turns.count.to_f) * 100
   end
 
-  def percent_correct_by_category(category)
-    
 
+  def percent_correct_by_category(requested_category)
+   # require 'pry';  binding.pry
+    (number_correct_by_category(requested_category).to_f / deck.cards_in_category(requested_category).count.to_f) * 100
+# giving zero for cards in category
   end
 end
 
-
-#   def new_card
-#     if @turns.count == 1
-#       @turns.clear
-#       deck.cards.to_a.pop 
-#     end
-#   end
-
-
-  # def take_turn(guess)
-  #   turn = Turn.new(guess, current_card)
-  #   if @turns.empty?
-  #    @turns << turn
-  #   else
-  #     deck.cards.rotate
-  #     round.deck.cards.rotate
-  #     @turns << turn
-  #   end
-  #   turn
-  # end
 

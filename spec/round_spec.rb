@@ -208,6 +208,7 @@ RSpec.describe Round do
     new_turn = round.take_turn("Juneau")
     expect(round.current_card).to be(card_2)
     round.take_turn("Venus")
+    # require 'pry';  binding.pry
     expect(round.percent_correct_by_category(:Geography)).to be(100.0)
   end
 
@@ -221,7 +222,7 @@ RSpec.describe Round do
     deck = Deck.new(cards)
     round = Round.new(deck)
     new_turn = round.take_turn("Juneau")
-    #require 'pry';  binding.pry
+   # require 'pry';  binding.pry
     expect(round.current_card).to be(card_2)
     round.take_turn("Venus")
     expect(round.current_card).to be(card_3)
