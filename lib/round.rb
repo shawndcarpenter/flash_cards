@@ -54,7 +54,7 @@ class Round
 
   def percent_correct_by_category(requested_category)
    # require 'pry';  binding.pry
-    (number_correct_by_category(requested_category).to_f / deck.cards_in_category(requested_category).count.to_f) * 100
+    (number_correct_by_category(requested_category).to_f) /(deck.cards_in_category(requested_category).count.to_f) * 100
 # giving zero for cards in category
   end
 end
