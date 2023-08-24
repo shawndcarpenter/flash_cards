@@ -175,12 +175,12 @@ RSpec.describe Round do
     new_turn = round.take_turn("Juneau")
     expect(round.current_card).to be(card_2)
     round.take_turn("Venus")
-    # require 'pry';  binding.pry
-    expect(round.number_correct_by_category(:STEM)).to eq(0)
+    #require 'pry';  binding.pry
     expect(round.number_correct_by_category(:Geography)).to eq(1)
+    expect(round.number_correct_by_category(:STEM)).to eq(0)
   end
 
-  xit 'gives a percentage correct' do
+  it 'gives a percentage correct' do
     # should be 50.0
     card_1 = Card.new("What is the capital of Alaska?", "Juneau", :Geography)
     card_2 = Card.new("The Viking spacecraft sent back to Earth photographs and reports about the surface of which planet?", "Mars", :STEM)
@@ -192,9 +192,11 @@ RSpec.describe Round do
     new_turn = round.take_turn("Juneau")
     expect(round.current_card).to be(card_2)
     round.take_turn("Venus")
+    #equire 'pry';  binding.pry
+    expect(round.percent_correct).to eq(50.0)
   end
 
-  xit 'gives percentage correct by category' do
+  it 'gives percentage correct by category' do
     # should be 100.0 for geography
     card_1 = Card.new("What is the capital of Alaska?", "Juneau", :Geography)
     card_2 = Card.new("The Viking spacecraft sent back to Earth photographs and reports about the surface of which planet?", "Mars", :STEM)
@@ -206,9 +208,10 @@ RSpec.describe Round do
     new_turn = round.take_turn("Juneau")
     expect(round.current_card).to be(card_2)
     round.take_turn("Venus")
+    expect(round.percent_correct_by_category(:Geography)).to be(100.0)
   end
 
-  xit 'gives current card' do
+  it 'gives current card' do
     # should be north north
     card_1 = Card.new("What is the capital of Alaska?", "Juneau", :Geography)
     card_2 = Card.new("The Viking spacecraft sent back to Earth photographs and reports about the surface of which planet?", "Mars", :STEM)
@@ -218,7 +221,9 @@ RSpec.describe Round do
     deck = Deck.new(cards)
     round = Round.new(deck)
     new_turn = round.take_turn("Juneau")
+    #require 'pry';  binding.pry
     expect(round.current_card).to be(card_2)
     round.take_turn("Venus")
+    expect(round.current_card).to be(card_3)
   end
 end

@@ -10,9 +10,10 @@ class Round
   def current_card
     if @turns.count == 0
       deck.cards[0]
-    elsif @turns.count == 1
-      rotated_deck = deck.cards.rotate(1)
-      rotated_deck[0]
+    elsif @turns.count > 0
+      # rotated_deck = deck.cards.rotate(1)
+      # rotated_deck[0]
+      @deck.cards.shift
     end
   end
 
@@ -21,7 +22,7 @@ class Round
     #turn includes the current card and guess
     turn = Turn.new(guess, current_card)
       @turns << turn
-    current_card
+      @deck.cards.shift
     turn
   end
 
@@ -31,27 +32,36 @@ class Round
     end
   end
 
+
   def number_correct_by_category(requested_category)
-    @correct << @category
-  
+    category_correct = 0
+    #   @turns.each do |turn|
+    #     if turn.correct? == true && @category == requested_category
+    #       category_correct += 1
+    #     end
+    #   end
     #require 'pry';  binding.pry
-    @correct.count(requested_category)
-    # set up local variable integer zero
-    counter += 1
-    # iterate over @correct
+    #category_correct
+    # @correct.count(requested_category)
+    # # set up local variable integer zero
+    # counter += 1
+    # # iterate over @correct
     @correct.each do |cor|
-      
-      cor.select(requested_category)
-      if @category == requested_category
-        counter += 1
+      @correct.count(requested_category)
+      if turn.correct? == true && @category == requested_category
+        category_correct += 1
       end
+      category_correct
     end
+      
     # .each
     # if category matches requested category, increment by 1
     
     # once done iterating, return integer
   end
-
+  def percent_correct
+    (@number_correct / @turns.count) * 100.to_f
+  end
 end
 
 
