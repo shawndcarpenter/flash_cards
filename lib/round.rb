@@ -35,24 +35,25 @@ class Round
 
   def number_correct_by_category(requested_category)
     category_correct = 0
-    #   @turns.each do |turn|
-    #     if turn.correct? == true && @category == requested_category
-    #       category_correct += 1
-    #     end
-    #   end
+    @turns.each do |turn|
+      if turn.correct? == true && turn.card.category == requested_category
+        category_correct += 1
+      end
+    end
     #require 'pry';  binding.pry
-    #category_correct
+    category_correct
     # @correct.count(requested_category)
     # # set up local variable integer zero
     # counter += 1
     # # iterate over @correct
-    @correct.each do |cor|
-      @correct.count(requested_category)
-      if turn.correct? == true && @category == requested_category
-        category_correct += 1
-      end
-      category_correct
-    end
+    
+    # @correct.each do |cor|
+    #   @cor.count(requested_category)
+    #   if turn.correct? && @category == requested_category
+    #     category_correct += 1
+    #   end
+    #   category_correct
+    # end
       
     # .each
     # if category matches requested category, increment by 1
