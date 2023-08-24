@@ -27,8 +27,8 @@ def start
   round = Round.new(deck)
   starting_deck_length = deck.cards.length
 
-  while starting_deck_length == deck.cards.length do
-    starting_deck_length == deck.cards.length
+  loop do
+   if starting_deck_length == deck.cards.length
     puts "Welcome! You're playing with #{deck.count} cards.
     ------------------------------------------------- 
 
@@ -36,15 +36,22 @@ def start
     Question: #{round.current_card.question}"
     turn = round.take_turn(gets.chomp)
       puts turn.feedback
-  end
-  "This is card #{round.turns.length + 1} out of #{starting_deck_length}
+   elsif starting_deck_length != deck.cards.length && deck.cards.length != 0
+    puts "This is card #{round.turns.length + 1} out of #{starting_deck_length}.
     Question: #{round.current_card.question}"
     turn = round.take_turn(gets.chomp)
       puts turn.feedback
-  #start a round
-  #welcome message
-  #this is card(card) out of cards
+   else
+    puts "****** Game over! ******
+   You had #{round.number_correct} correct guesses out of #{round.turns.count} for a total score of #{round.percent_correct.round}%.
+    STEM - #{round.percent_correct_by_category(:STEM)}% correct
+    Turing Staff - #{round.percent_correct_by_category(:TuringStaff)}% correct
+    Geography - #{round.percent_correct_by_category(:STEM)}% correct"
 
+   break
+   end
+
+   end
 end
 
 start
